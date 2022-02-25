@@ -1,24 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
-:root{
-    --main-color:#b35bd6;
-    --black:#13131a;
-    --bg:#010103;
-    --border: .1rem solid rgba(255,255,255,.3)
-}
-
-*{
-    font-family: 'Roboto', sans-serif;
-    margin: 0; 
-    padding: 0;
-    box-sizing: border-box;
-    outline: none; 
-    border: none;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: .2s linear;
-}
-
 html{
     font-size: 62.5%;
     overflow-x:hidden ;
@@ -39,9 +20,9 @@ html::-webkit-scrollbar-thumb{
    border-radius: 5rem;
 }
 
-body{
+/* body{
     background: var(--bg);
-}
+} */
 
 section{
     padding: 2rem 7%;
@@ -255,10 +236,6 @@ section{
     /* font-family: ; */
 }
 
-.userLogin h3{
-
-}
-
 .header .user-form .userLogin{
     width: 100%;
     display: flex;
@@ -285,7 +262,7 @@ section{
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(45deg, #cecff8, #d8f2ff);
+    background: linear-gradient(180deg, #cecff8, #d8f2ff);
     background-size: cover;
     background-position: center;
 }
