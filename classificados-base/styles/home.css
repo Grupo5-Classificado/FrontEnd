@@ -72,6 +72,17 @@ section{
     cursor: pointer;
     border-radius: .5rem;
 }
+.btnLogin{
+    color:  white;
+    background: linear-gradient(45deg, #87adfe, #ff77cd);
+    box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    font-size: 15px;
+    padding: 3px 4px;
+    cursor: pointer;
+    border-radius: .5rem;
+    margin-bottom: 7px;
+    text-align: center;
+}
 
 .btn:hover{
     letter-spacing: .2rem;
@@ -81,16 +92,21 @@ section{
     letter-spacing: .2rem;
 }
 
+.btnLogin:hover{
+    letter-spacing: .2rem;
+}
+
 .header{
-    /* background: var(--bg); */
+    /* background: #FFB0A1; */
     display: flex;
+    height: 10rem;
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 7%;
     /* border-bottom: var(--border); */
     position: fixed;
     top: 0; left: 0 ; right: 0;
-    z-index: 1000;
+    z-index: 900;
 }
 
 .header .logoHeader img{
@@ -233,23 +249,35 @@ section{
     right: 0;
 }
 
+.userLogin span{
+    font-size: 35px;
+    font-weight: 300;
+    /* font-family: ; */
+}
 
-/* .user-form.active::after{
-    content: "";
-    left: 0;
-    width: 100vw;
-    height: 100vw;
-    position: fixed;
-    background: rgba(0,0,0,0.4);
-    z-index: 999;
-    top: 0;
-} */
+.userLogin h3{
+
+}
+
+.header .user-form .userLogin{
+    width: 100%;
+    display: flex;
+    height: 150px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
 
 .header .user-form input{
     width: 70%;
     height: 4.5vh;
     padding-left: 2px;
+    border-radius: 4px;
 }
+
+
 
 /* home */
 
@@ -257,7 +285,7 @@ section{
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: url(../assets/background.png) no-repeat;
+    background: linear-gradient(45deg, #cecff8, #d8f2ff);
     background-size: cover;
     background-position: center;
 }

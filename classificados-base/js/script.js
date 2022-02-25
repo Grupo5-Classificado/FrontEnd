@@ -4,6 +4,7 @@ document.querySelector('#menu-btn').onclick = () => {
     navbar.classList.toggle('active');
     searchForm.classList.remove('active');
     cartItem.classList.remove('active');
+    userForm.classList.remove('active');
     console.log('teste');
   };
   
@@ -13,6 +14,7 @@ document.querySelector('#menu-btn').onclick = () => {
     cartItem.classList.toggle('active');
     navbar.classList.remove('active');
     searchForm.classList.remove('active');
+    userForm.classList.remove('active');
     console.log('teste');
   };
 
@@ -22,6 +24,7 @@ document.querySelector('#menu-btn').onclick = () => {
     searchForm.classList.toggle('active');
     navbar.classList.remove('active');
     cartItem.classList.remove('active');
+    userForm.classList.remove('active');
     console.log('teste');
   };
 
