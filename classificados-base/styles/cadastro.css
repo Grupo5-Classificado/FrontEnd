@@ -6,14 +6,25 @@
     margin: 0;
     padding: 0;
 }
-
+body{
+    background: linear-gradient(180deg,#93DBFF, #cecff8, #d8f2ff);
+}
 
 main{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(45deg, #cecff8, #d8f2ff);
+    
+}
+
+.logo{
+    height: 70px;
+    width: 90%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .cadastroForm{
@@ -22,10 +33,29 @@ main{
     background: white;
     border-radius: 10px;
     box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .form{
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%
+}
 
+p{
+    font-size: 20px;
+}
+
+input{
+    height: 25px;
+    width: 100%;
+    margin-bottom: 25px;
+    padding-left: 5px;
 }
 
 .btnForm{
@@ -43,4 +73,12 @@ main{
     cursor: pointer;
     font-size: 20px;
     border-radius: .5rem;
+}
+
+.footer{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
