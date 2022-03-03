@@ -92,11 +92,21 @@ h2{
     justify-content: space-between;
 }
 
+
+
+.animation {
+    background-color: transparent;
+}
+
 .listaDemandas__tituloDemanda{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.listaDemandas__tituloDemanda div{
+    margin: 0px
 }
 
 .listaDemandas__descricao{

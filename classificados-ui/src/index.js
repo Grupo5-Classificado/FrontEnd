@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from '../src/pages/home/App';
+import ListaClassificados from '../src/pages/listaClassificados/listaClassificados.jsx'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ListaClassificados />
   </React.StrictMode>,
   document.getElementById('root')
 );
