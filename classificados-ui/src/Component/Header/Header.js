@@ -1,6 +1,8 @@
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import '../../assets/css/header.css';
 
+import { Script } from "../../services/script"
+
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
@@ -112,7 +114,6 @@ export default class Header extends Component {
                     <a href="#" className="btnLogin">Não tem uma conta? Cadastre-se!</a>
                 </div>
 
-                <script src="../js/script.js"></script>
             </header>
 
         )
