@@ -14,19 +14,14 @@ const routing = (
     <div>
       <Switch>
         <Route exact path="/cadastroClassificado" component={cadastroClassificado}/>
+        <Route exact path="/listaClassificados" component={ListaClassificados} />
       </Switch>
     </div>
   </Router>
 );
 
 ReactDOM.render(
-<<<<<<< HEAD
-  <React.StrictMode>
-    <ListaClassificados />
-  </React.StrictMode>,
-=======
   routing,
->>>>>>> classificado-cadastro
   document.getElementById('root')
 );
 

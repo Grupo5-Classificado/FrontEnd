@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect, useRef } from "react";
 import "../../styles/listaClassificados.css"
 import "../../styles/global.css"
@@ -8,8 +9,15 @@ import Lottie from "react-lottie";
 import animationData from "../../assets/17304-star.json"
 import api from "../../services/api";
 import { parseJwt } from "../../services/auth";
+import Header, { teste } from "../../Component/Header/Header.jsx";
 
-export default function ListaClassificados() {
+// export const Context = React.createContext();
+
+
+
+
+export default function ListaClassificados(props) {
+    
     const [listaClassificados, setListaClassificados] = useState([])
     const [animationState, setAnimationState] = useState({
         isStopped: true, isPaused: false
@@ -68,7 +76,11 @@ export default function ListaClassificados() {
         //     console.log(teste)
         // }
 
-        
+
+    }
+
+    function Pesquisar(valorPesquisado){
+        console.log(valorPesquisado)
     }
 
     function FazerReserva(idPedidoEscolhido) {
@@ -97,11 +109,13 @@ export default function ListaClassificados() {
             .then(ListaClassificados)
     }
 
+    useEffect(Pesquisar, [teste])
     useEffect(ListarClassificados, [])
 
     return (
         <div>
-
+            {/* <Context.Provider value={listaClassificados}></Context.Provider> */}
+                <Header></Header>
             <section className="listaDemandas">
                 <div className="listaDemandas__box container">
                     <h1>

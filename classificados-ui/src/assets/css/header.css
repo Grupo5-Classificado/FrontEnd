@@ -58,9 +58,9 @@ body{
     background: var(--bg);
 }
 
-section{
+/* section{
     padding: 2rem 7%;
-}
+} */
 
 .btn{
     margin-top: 1rem;
@@ -350,12 +350,12 @@ p{
     font-size: 20px;
 }
 
-input{
+/* input{
     height: 25px;
     width: 100%;
     margin-bottom: 25px;
     padding-left: 5px;
-}
+} */
 
 .btnForm{
     font-family: 'Roboto', sans-serif;
