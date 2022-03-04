@@ -1,14 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
+
 import App from '../src/pages/home/App';
 import ListaClassificados from '../src/pages/listaClassificados/listaClassificados.jsx'
 import reportWebVitals from './reportWebVitals';
+import cadastroClassificado from './pages/cadastro-classificados/cadastroClassificado'
+
+
+const routing = (
+  <Router>
+    <div>
+      <Switch>
+        <Route exact path="/cadastroClassificado" component={cadastroClassificado}/>
+      </Switch>
+    </div>
+  </Router>
+);
 
 ReactDOM.render(
+<<<<<<< HEAD
   <React.StrictMode>
     <ListaClassificados />
   </React.StrictMode>,
+=======
+  routing,
+>>>>>>> classificado-cadastro
   document.getElementById('root')
 );
 

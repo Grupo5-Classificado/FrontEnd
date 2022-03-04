@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="../styles/Cadastro-classificado.css">
+    <title>Cadastro de anúncio</title>
+</head>
+
+<body>
+    
+    <header class="header container">
+
+        <a href="#" class="logoHeader">
+            <img src="../assets/logo.png" alt="">
+        </a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#sobre">sobre</a>
+            <a href="#portfolio">classificados</a>
+            <a href="#produtos">venda aqui !</a>
+            <!-- <a href="#posts">posts</a> -->
+        </nav>
+
+        <div class="icons">
+            <div class="icones-caixa">
+                <div class="fas fa-search" id="search-btn"> </div>
+                <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                <div class="fas fa-user" id="user-btn"></div>
+                <div class="fas fa-bars" id="menu-btn"></div>
+            </div>
+        </div>
+        </div>
+
+        <div class="search-form">
+            <input type="search" id="search-box" placeholder="Pesquise Aqui...">
+            <label for="search-box" class="fas fa-search"></label>
+        </div>
+
+        <div class="cart-items-container">
+
+            <div class="cart-item">
+                <span class="fas fa-times"></span>
+                <img src="../assets/imagem-carrinho1.jpg">
+                <div class="content">
+                    <h3>Item 1</h3>
+
+                </div>
+            </div>
+
+            <div class="cart-item">
+                <span class="fas fa-times"></span>
+                <img src="../assets/imagem-carrinho2.jpg">
+                <div class="content">
+                    <h3>Item 2</h3>
+
+                </div>
+            </div>
+
+            <div class="cart-item">
+                <span class="fas fa-times"></span>
+                <img src="../assets/imagem-carrinho3.jpg">
+                <div class="content">
+                    <h3>Item 3</h3>
+
+                </div>
+            </div>
+
+            <a href="#" class="btnCart">Comprar</a>
+
+        </div>
+
+        <div class="user-form">
+            <div class="userLogin">
+                <span>Bem Vindo</span>
+                <h3>Login</h3>
+                <input placeholder="Digite seu Email" type="email">
+                <h3>Senha</h3>
+                <input placeholder="Digite Sua Senha" type="password">
+
+            </div>
+            <a href="#" class="btnLogin">Entrar</a>
+            <a href="#" class="btnLogin">Não tem uma conta? Cadastre-se!</a>
+        </div>
+
+        <script src="../js/script.js"></script>
+    </header>
+
+    <main>
+
+        <section class="container-main container">
+
+            <div class="content">
+                <div class="cadastroForm">
+                    <img class="img-ps5" src="../assets/Rectangle 5.png" alt="">
+
+                    <form method="post" enctype="multipart/form-data">
+                        <div>
+                            <input type="file" id="file" name="file" multiple>
+                        </div>
+                    </form>
+
+                    <div class="form">
+                        <input placeholder="Titulo do anúncio" type="text">
+                        <input class="desc-anuncio" placeholder="Descrição do anúncio" type="text">
+
+
+                        <button class="btnForm" type="submit">Cadastrar</button>
+                    </div>
+                </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-basico">
+            <h2>LEILOADOS Todos os Direitos Reservados</h2>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
