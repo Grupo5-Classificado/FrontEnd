@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from '../src/pages/home/App';
+// import Cadastro from '../src/pages/cadastro/cadastro'
+import Index from '../src/pages/index/index';
+import Classificado from './pages/classificado/classificado';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Index />
   </React.StrictMode>,
   document.getElementById('root')
 );
