@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 
-import App from '../src/pages/home/App';
+import App from '../src/pages/home/App.js';
 import ListaClassificados from '../src/pages/listaClassificados/listaClassificados.jsx'
 import reportWebVitals from './reportWebVitals';
 import cadastroClassificado from './pages/cadastro-classificados/cadastroClassificado'
+import Cadastro from './pages/cadastro/cadastro.jsx'
 
 
 const routing = (
   <Router>
     <div>
       <Switch>
-        <Route exact path="/cadastroClassificado" component={cadastroClassificado}/>
+        <Route exact path="/" component={App} />
+        <Route exact path="/cadastroClassificado" component={cadastroClassificado} />
         <Route exact path="/listaClassificados" component={ListaClassificados} />
+        <Route exact path="/cadastro" component={Cadastro} />
       </Switch>
     </div>
   </Router>
