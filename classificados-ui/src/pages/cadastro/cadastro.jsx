@@ -6,7 +6,7 @@ export default function Cadastro() {
     return(
 
         <div className='main'>
-             <div class="cadastroForm">
+             <div class="cadastroForm1">
             <div class="logo">
                 <h1>LEILOADOS</h1>
             </div>

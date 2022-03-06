@@ -6,7 +6,7 @@ import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import { useState, useEffect } from "react";
 import api from '../../services/api';
 import { render } from '@testing-library/react';
-import "../../styles/cadastroClassificado.css"
+
 
 
 export default class cadastroClassificado extends Component {
@@ -137,7 +137,7 @@ export default class cadastroClassificado extends Component {
                 <Header />
 
                 <main>
-                    <section class="container-main container">
+                    <section class="container-main inputsClassificado">
                         <div class="content">
                             <div class="cadastroForm">
                                 <img class="img-ps5" src="../assets/Rectangle 5.png" alt="" />
@@ -148,7 +148,7 @@ export default class cadastroClassificado extends Component {
                                     </div>
                                 </form>
 
-                                <div class="form">
+                                <div class="form ">
                                     <input placeholder="Titulo do anúncio" type="text" name="titulo" value={this.state.titulo} onChange={this.atualizaStateCampo} />
                                     <input class="desc-anuncio" placeholder="Descrição do anúncio" type="text" name="descricao" value={this.state.descricao} onChange={this.atualizaStateCampo}  />
 

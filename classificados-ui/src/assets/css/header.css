@@ -97,6 +97,11 @@ body{
     border-radius: .5rem;
     margin-bottom: 7px;
     text-align: center;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .btn:hover{
@@ -281,7 +286,7 @@ body{
 .header .user-form .userLogin{
     width: 100%;
     display: flex;
-    height: 150px;
+    height: 250px;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
@@ -290,7 +295,7 @@ body{
 }
 
 .header .user-form input{
-    width: 70%;
+    width: 100%;
     height: 4.5vh;
     padding-left: 2px;
     border-radius: 4px;
@@ -350,12 +355,19 @@ p{
     font-size: 20px;
 }
 
-/* input{
-    height: 25px;
+.inputsClassificado input{
     width: 100%;
     margin-bottom: 25px;
     padding-left: 5px;
-} */
+}
+
+.inputsClassificado .form input:nth-child(1){
+    height: 25px;
+}
+
+.desc-anuncio{
+    height: 99px;
+}
 
 .btnForm{
     font-family: 'Roboto', sans-serif;
@@ -387,10 +399,6 @@ p{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-.desc-anuncio{
-    height: 99px;
 }
 
 .img-ps5{

@@ -8,6 +8,7 @@ import ListaClassificados from '../src/pages/listaClassificados/listaClassificad
 import reportWebVitals from './reportWebVitals';
 import cadastroClassificado from './pages/cadastro-classificados/cadastroClassificado'
 import Cadastro from './pages/cadastro/cadastro.jsx'
+import Classificado from './pages/classificado/classificado';
 
 
 const routing = (
@@ -18,6 +19,7 @@ const routing = (
         <Route exact path="/cadastroClassificado" component={cadastroClassificado} />
         <Route exact path="/listaClassificados" component={ListaClassificados} />
         <Route exact path="/cadastro" component={Cadastro} />
+        <Route exact path="/classificado" component={Classificado} />
       </Switch>
     </div>
   </Router>
