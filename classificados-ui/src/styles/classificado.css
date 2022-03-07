@@ -2,7 +2,7 @@
 
 .descProd{
     height: 100%;
-    width: 50%;
+    width: 850px;
     background: white;
     border-radius: 10px;
     box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
@@ -13,7 +13,7 @@
 }
 
 .imgProd img{
-    width: 90%;
+    width: 87%;
     border-radius: 10px;
 }
 
@@ -23,11 +23,12 @@ body{
 }
 
 .main{
-    /* width: 100vh; */
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
+    margin-bottom: 195px;
 }
 
 :root{
@@ -294,7 +295,7 @@ section{
 }
 
 .userLogin h3{
-    font-size: 35px;
+    font-size: 20px;
     font-weight: 400;
 }
 
@@ -310,11 +311,12 @@ section{
 }
 
 .header .user-form input{
-    width: 70%;
+    width: 100%;
     height: 4.5vh;
     padding-left: 2px;
     border-radius: 4px;
     box-shadow: 3px 8px 22px rgba(94,28,68,0.15);
+    text-transform: lowercase;
 }
 
 /*main*/
@@ -324,12 +326,14 @@ section{
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    height: 465px;
 }
 
 .imgProd{
     /* height: auto; */
     width: 538px;
     /* display:flex; */
+    height: 465px;
 }
 
 .nomeProd{
@@ -339,6 +343,7 @@ section{
     justify-content: center;
     align-items: center;
     height: 100px;
+    margin-bottom: 90px;
 }
 
 .nomeProd h3{
@@ -402,7 +407,7 @@ section{
   }
 
 
-.boxProposta button{
+.btnCriar{
     margin-top: 10px;
     width: 100%;
     height: 60px;
@@ -411,4 +416,64 @@ section{
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
     border-radius: 15px;
+}
+
+.campoProposta{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.boxProposta textarea{
+    width: 100%;
+    resize: none;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+.btnAddCancel{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 90px;
+}
+
+.btnAddCancel div{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+}
+
+.btnAddCancel button{
+    height: 50px;
+    width: 45%;
+    border-radius: 10px;
+    background-color: #87adfe;
+    color: #FFF;
+    font-size: 20px;
+}
+
+.listaPropostas{
+    margin-top: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.proposta {
+    width: 100%;
+    border-radius: 10px;
+    background-color: #ff77cd;
+    height: 150px;
+    color: #FFF;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 40px;
 }

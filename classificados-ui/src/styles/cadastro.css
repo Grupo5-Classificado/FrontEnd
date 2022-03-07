@@ -11,7 +11,7 @@ body{
     background: linear-gradient(180deg,#93DBFF, #cecff8, #d8f2ff);
 }
 
-.main{
+.mainCadastro{
     display: flex;
     flex-direction: column;
     justify-content: center;

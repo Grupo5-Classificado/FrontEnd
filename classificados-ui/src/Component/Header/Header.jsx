@@ -1,20 +1,63 @@
 import React, { Component } from "react";
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
+import api from "../../services/api";
 import '../../assets/css/header.css';
+import { useHistory } from "react-router-dom";
 
 import ListaClassificados from "../../pages/listaClassificados/listaClassificados.jsx"
 
 // import { Script } from "../../services/script"
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 export var teste = ""
 
-export default class Header extends Component {
+class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemPesquisado: 'gjdgjdfj'
+            itemPesquisado: 'gjdgjdfj',
+            email: 'comum@comum.com',
+            senha: 'teste321',
+            listaReservados: []
         }
+    }
+
+
+    limparCampos = () => {
+        this.setState({
+            email: '',
+            senha: ''
+        })
+    }
+
+    logar = (event) => {
+        event.preventDefault()
+
+        api.post('/login', {
+            email: this.state.email,
+            senha: this.state.senha
+        })
+
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    console.log(resposta)
+                    localStorage.setItem('login-usuario-leiloados', resposta.data.token)
+                    this.setState({
+                        isLoading: false
+                    })
+
+                    this.props.history.push("/listaclassificados")
+
+                }
+
+            })
+
+            .catch(
+                erro => console.log(erro)
+            )
+
+        this.limparCampos()
+
     }
 
     toggleMenu = () => {
@@ -27,8 +70,8 @@ export default class Header extends Component {
             [campo.target.name]: campo.target.value
         })
 
-        teste = this.state.itemPesquisado
-        console.log(teste)
+        // teste = this.state.itemPesquisado
+        // console.log(teste)
     }
 
     listar = () => {
@@ -81,7 +124,21 @@ export default class Header extends Component {
         console.log('teste');
     }
 
+
+    listarReservas = () => {
+        api.get("/reservas/listarminhas/" + parseJwt().jti)
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    this.setState({
+                        listaReservados: resposta.data
+                    })
+                }
+            })
+            .catch((erro) => console.log(erro))
+    }
+
     cartBtn = () => {
+
         let navbar = document.getElementById('navbar')
         let cartItem = document.querySelector('.cart-items-container');
         let searchForm = document.querySelector('.search-form');
@@ -92,6 +149,16 @@ export default class Header extends Component {
         searchForm.classList.remove('active');
         userForm.classList.remove('active');
         console.log('teste');
+        this.listarReservas()
+
+    }
+
+    desfazerReserva = (idReserva) => {
+        this.listarReservas()
+        api.delete("/reservas/" + idReserva)
+            .catch((erro) => {
+                console.log(erro)
+            })
     }
 
     userBtn = () => {
@@ -118,10 +185,16 @@ export default class Header extends Component {
                 </a>
 
                 <nav className="navbar" id="navbar">
-                    <a href="#home">home</a>
-                    <a href="#sobre">sobre</a>
-                    <a href="#portfolio">classificados</a>
-                    <a href="#produtos">venda aqui !</a>
+                    <Link to="/">
+                        <a href="#home">Home</a>
+                    </Link>
+                    <a href="#sobre">Sobre</a>
+                    <Link to="/listaclassificados">
+                        <a href="#portfolio">Demandas</a>
+                    </Link>
+                    <Link to="/cadastroclassificado">
+                        <a href="#produtos">Anuncie aqui!</a>
+                    </Link>
                 </nav>
 
                 <div className="icons">
@@ -148,32 +221,19 @@ export default class Header extends Component {
 
                 <div className="cart-items-container">
 
-                    <div className="cart-item">
-                        <span className="fas fa-times" />
-                        <img src="../assets/imagem-carrinho1.jpg" />
-                        <div className="content">
-                            <h3>Item 1</h3>
+                    {
+                        this.state.listaReservados.map((reserva) => {
+                            return (
+                                <div key={reserva.idReserva} id={reserva.idReserva} className="cart-item">
+                                    <span onClick={() => this.desfazerReserva(reserva.idReserva)} className="fas fa-times" />
+                                    <div className="content">
+                                        <h3>{reserva.idClassificadoNavigation.titulo}</h3>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
-                        </div>
-                    </div>
-
-                    <div className="cart-item">
-                        <span className="fas fa-times"></span>
-                        <img src="../assets/imagem-carrinho2.jpg" />
-                        <div className="content">
-                            <h3>Item 2</h3>
-
-                        </div>
-                    </div>
-
-                    <div className="cart-item">
-                        <span className="fas fa-times"></span>
-                        <img src="../assets/imagem-carrinho3.jpg" />
-                        <div className="content">
-                            <h3>Item 3</h3>
-
-                        </div>
-                    </div>
 
                     <a href="#" className="btnCart">Comprar</a>
 
@@ -182,14 +242,33 @@ export default class Header extends Component {
                 <div className="user-form">
                     <div className="userLogin">
                         <span>Bem Vindo</span>
-                        <h3>Login</h3>
-                        <input placeholder="Digite seu Email" type="email" />
-                        <h3>Senha</h3>
-                        <input placeholder="Digite Sua Senha" type="password" />
+                        <form onSubmit={this.logar} className="formLogin" action="">
+                            <h3>Login</h3>
+                            <input
+                                placeholder="Digite seu Email"
+                                name="email"
+                                type="text"
+                                value={this.state.email}
+                                onChange={this.atualizarCampo}
+                            />
+
+                            <h3>Senha</h3>
+                            <input
+                                placeholder="Digite Sua Senha"
+                                name="senha"
+                                type="password"
+                                value={this.state.senha}
+                                onChange={this.atualizarCampo}
+                            />
+
+                            <button type="submit" className="btnLogin">Entrar</button>
+                            <Link to="/cadastro" style={{ width: "100%" }}>
+                                <a href="#" className="btnLogin">Não tem uma conta? Cadastre-se!</a>
+                            </Link>
+                        </form>
 
                     </div>
-                    <a href="#" className="btnLogin">Entrar</a>
-                    <a href="#" className="btnLogin">Não tem uma conta? Cadastre-se!</a>
+
                 </div>
 
                 <script src="../js/script.js"></script>
@@ -199,3 +278,5 @@ export default class Header extends Component {
         )
     }
 }
+
+export default withRouter(Header);

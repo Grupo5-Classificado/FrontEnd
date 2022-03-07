@@ -19,7 +19,7 @@ const routing = (
         <Route exact path="/cadastroClassificado" component={cadastroClassificado} />
         <Route exact path="/listaClassificados" component={ListaClassificados} />
         <Route exact path="/cadastro" component={Cadastro} />
-        <Route exact path="/classificado" component={Classificado} />
+        <Route path="/classificado" component={Classificado} />
       </Switch>
     </div>
   </Router>

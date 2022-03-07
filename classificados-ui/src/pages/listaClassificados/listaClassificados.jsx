@@ -4,12 +4,15 @@ import "../../styles/listaClassificados.css"
 import "../../styles/global.css"
 import "https://code.iconify.design/2/2.1.2/iconify.min.js"
 import imgUsuario from "../../assets/dafoe.jpg"
-import imgClassificado from "../../assets/img-ps5.png"
+import imgClassificado from "../../assets/imgleilao.png"
 import Lottie from "react-lottie";
 import animationData from "../../assets/17304-star.json"
 import api from "../../services/api";
 import { parseJwt } from "../../services/auth";
 import Header, { teste } from "../../Component/Header/Header.jsx";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { Link } from "react-router-dom";
 
 // export const Context = React.createContext();
 
@@ -17,12 +20,13 @@ import Header, { teste } from "../../Component/Header/Header.jsx";
 
 
 export default function ListaClassificados(props) {
-    
+
     const [listaClassificados, setListaClassificados] = useState([])
     const [animationState, setAnimationState] = useState({
         isStopped: true, isPaused: false
     });
     const [filtroCategorias, setFiltroCategorias] = useState([])
+    const [listaReservas, setListaReservas] = useState([])
 
     const defaultOptions = {
         loop: false,
@@ -60,7 +64,7 @@ export default function ListaClassificados(props) {
         //     }
         // })
 
-        api.get('/classificados')
+        api.get('/pedidos')
             .then((resposta) => {
                 if (resposta.status === 200) {
                     setListaClassificados(resposta.data)
@@ -79,43 +83,68 @@ export default function ListaClassificados(props) {
 
     }
 
-    function Pesquisar(valorPesquisado){
+    function ListarReservas() {
+        api.get("/reservas/listarminhas/" + parseJwt().jti)
+            .then((resposta) => {
+                if (resposta.status === 200) {
+                    setListaReservas(resposta.data)
+                }
+            })
+            .catch((erro) => console.log(erro))
+    }
+
+    function Pesquisar(valorPesquisado) {
         console.log(valorPesquisado)
+    }
+
+    function DesfazerReserva(idPedidoEscolhido) {
+        let btnReservado = document.getElementById("btnReservado" + idPedidoEscolhido)
+        btnReservado.style.display = "none"
+        let btnReservar = document.getElementById("btnReservar" + idPedidoEscolhido)
+        btnReservar.style.display = "block"
+
+        let reserva = listaReservas.filter((reserva) => { return reserva.idClassificado === idPedidoEscolhido })
+
+        api.delete("/reservas/" + reserva.idReserva)
+            .catch((erro) => {
+                console.log(erro)
+            })
     }
 
     function FazerReserva(idPedidoEscolhido) {
 
-        setAnimationState({
-            ...animationState,
-            isStopped: !animationState.isStopped
-        })
+        let btnReservado = document.getElementById("btnReservado" + idPedidoEscolhido)
+        btnReservado.style.display = "block"
+        let btnReservar = document.getElementById("btnReservar" + idPedidoEscolhido)
+        btnReservar.style.display = "none"
+
+        // setAnimationState({
+        //     ...animationState,
+        //     isStopped: !animationState.isStopped
+        // })
 
         let reserva = {
-            idUsuario: 2,
-            idPedido: idPedidoEscolhido
+            idUsuario: parseJwt().jti,
+            idClassificado: idPedidoEscolhido
         }
 
-        api.post("/reserva", reserva
-            // {
-            //     headers: {
-            //         Authorization: 'Bearer ' + localStorage.getItem('xxxxxxxxxxxxxxx'),
-            //     }
-            // }
-        )
+        api.post("/reservas", reserva)
             .catch((erro) => {
                 console.log(erro)
             })
 
-            .then(ListaClassificados)
+            .then(ListarReservas)
+
     }
 
     useEffect(Pesquisar, [teste])
+    useEffect(ListarReservas, [])
     useEffect(ListarClassificados, [])
 
     return (
         <div>
             {/* <Context.Provider value={listaClassificados}></Context.Provider> */}
-                <Header></Header>
+            <Header></Header>
             <section className="listaDemandas">
                 <div className="listaDemandas__box container">
                     <h1>
@@ -128,40 +157,53 @@ export default function ListaClassificados(props) {
                             {
                                 listaClassificados.map((classificado) => {
                                     return (
-                                        <div id={classificado.id} key={classificado.id} className="listaDemandas__demanda">
+
+                                        <div id={classificado.idPedido} key={classificado.idPedido} className="listaDemandas__demanda">
                                             <img className="listaDemandas__imgDemanda" src={imgClassificado} alt="" />
                                             <div className="listaDemandas__conteudo">
                                                 <div className="listaDemandas__tituloDemanda">
-                                                    <img className="listaDemandas__imgPerfil" src={classificado.Imagem}
+                                                    <img className="listaDemandas__imgPerfil"
                                                         alt="" />
-                                                    <h2>{classificado.Titulo}</h2>
-                                                    <button className="animation" onClick={() => FazerReserva(classificado.id)}>
-                                                        <Lottie options={defaultOptions}
+                                                    <h2>{classificado.titulo}</h2>
+                                                    <button id={"btnReservado" + classificado.idPedido} style={{ display: 'none' }} onClick={() => DesfazerReserva(classificado.idPedido)} className="animation">
+                                                        <span className="iconify-inline"
+                                                            data-icon="ant-design:star-filled"></span>
+                                                        {/* <Lottie options={defaultOptions}
                                                             height={60}
                                                             width={60}
                                                             isStopped={animationState.isStopped}
-                                                            isPaused={animationState.isPaused} />
+                                                            isPaused={animationState.isPaused} /> */}
+                                                    </button>
+                                                    <button id={"btnReservar" + classificado.idPedido} style={{ display: "block" }} className="animation" onClick={() => FazerReserva(classificado.idPedido)}>
+                                                        <span className="iconify-inline"
+                                                            data-icon="ant-design:star-outlined"></span>
+                                                        {/* <Lottie options={defaultOptions}
+                                                            height={60}
+                                                            width={60}
+                                                            isStopped={animationState.isStopped}
+                                                            isPaused={animationState.isPaused} /> */}
                                                     </button>
                                                 </div>
                                                 <p className="listaDemandas__descricao">
-                                                    {classificado.Descricao}
+                                                    {classificado.pedido1}
                                                 </p>
                                                 <div className="listaDemandas__tags">
                                                     <div>
-                                                        <p>Menos de R$ 7.000,00</p>
-                                                        <p>São Paulo</p>
-                                                        <p>Usado</p>
+                                                        <p>{classificado.idTagNavigation.nomeTag}</p>
                                                     </div>
                                                     <div>
-                                                        <p>
-                                                            Ver mais
-                                                        </p>
+                                                        <Link to={"/classificado/" + classificado.idPedido}>
+                                                            <p>
+                                                                Ver mais
+                                                            </p>
+                                                        </Link>
                                                         <span className="iconify-inline"
                                                             data-icon="akar-icons:circle-chevron-right-fill"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     )
                                 })
                             }

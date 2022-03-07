@@ -2,7 +2,7 @@ export const usuarioAutenticado = () => localStorage.getItem('xxxxxxxxxxxxx') !=
 
 export const parseJwt = () => {
 
-    let base64 = localStorage.getItem('xxxxxxxxxxxxxxxx').split('.')[1];
+    let base64 = localStorage.getItem('login-usuario-leiloados').split('.')[1];
 
     return JSON.parse(window.atob(base64));
 }

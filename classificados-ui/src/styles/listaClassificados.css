@@ -103,6 +103,7 @@ h2{
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    color: #000;
 }
 
 .listaDemandas__tituloDemanda div{
